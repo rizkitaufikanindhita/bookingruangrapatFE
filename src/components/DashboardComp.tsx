@@ -20,7 +20,8 @@ const DashboardComp = () => {
     event: String,
     clockStart: clockType,
     clockEnd: clockType,
-    room: String
+    room: String,
+    pic: String
   }
   const [booking, setBooking] = useState<dataType[]>([])
 
@@ -143,6 +144,7 @@ const DashboardComp = () => {
                         <div className="font-bold">{book.event.toUpperCase()}</div>
                         <div>{formatTime(book.clockStart)} - {formatTime(book.clockEnd)}</div>
                         <div>{book.room}</div>
+                        <div>PIC: {book.pic}</div>
                       </div>
                     ))
                   ) : (

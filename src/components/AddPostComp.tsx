@@ -32,6 +32,7 @@ const AddPostComp = () => {
   const [room, setRoom] = React.useState("")
   const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 })
   const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 })
+  const [pic, setPic] = React.useState("")
 
   const handleRoomChange = (e: any) => {
     setRoom(e)
@@ -70,7 +71,8 @@ const AddPostComp = () => {
     event: event,
     room: room,
     clockStart: clockStart,
-    clockEnd: clockEnd
+    clockEnd: clockEnd,
+    pic: pic
   }
 
   const submit = async () => {
@@ -206,6 +208,13 @@ const AddPostComp = () => {
             </div>
           </div>
         </div>
+        <div className="px-5 md:px-96">
+          <div className="items-start mt-4 text-left">
+            <div className="text-lg font-bold">Penanggungjawab Ruang/PIC</div>
+            <Input className="w-full mt-2 focus-visible:ring-transparent" placeholder="Penanggungjawab" onChange={(e) => setPic(e.target.value)} />
+          </div>
+        </div>
+
         <div className="w-full mt-2 px-5 md:px-96">
           <Button className="w-full mt-4" onClick={submit}>Submit</Button>
         </div>

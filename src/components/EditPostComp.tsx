@@ -35,7 +35,7 @@ const EditPostComp = () => {
   const [room, setRoom] = React.useState("");
   const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 });
   const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 });
-
+  const [pic, setPic] = React.useState("")
   const id = searchParams.get("id")
 
   const handleRoomChange = (e: any) => {
@@ -79,6 +79,7 @@ const EditPostComp = () => {
     console.log(typeof booking.date)
     setRoom(booking.room)
     setEvent(booking.event)
+    setPic(booking.pic)
     setClockStart({ hours: booking.clockStart.hours, minutes: booking.clockStart.minutes })
     setClockEnd({ hours: booking.clockEnd.hours, minutes: booking.clockEnd.minutes })
   }
@@ -93,6 +94,7 @@ const EditPostComp = () => {
     room: room,
     clockStart: clockStart,
     clockEnd: clockEnd,
+    pic: pic
   };
 
   const submit = async () => {
@@ -242,6 +244,18 @@ const EditPostComp = () => {
             </div>
           </div>
         </div>
+        <div className="px-5 md:px-96">
+          <div className="items-start mt-4 text-left">
+            <div className="text-lg font-bold">Penanggungjawab Ruang/PIC</div>
+            <Input
+              className="mt-2 focus-visible:ring-transparent"
+              placeholder="Penanggungjawab"
+              value={pic}
+              onChange={(e) => setPic(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className="w-full mt-2 px-5 md:px-96">
           <Button className="w-full mt-4" onClick={submit}>
             Submit
