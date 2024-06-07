@@ -30,31 +30,31 @@ const AddPostComp = () => {
   const [date, setDate] = React.useState<string>("");
   const [event, setEvent] = React.useState("")
   const [room, setRoom] = React.useState("")
-  const [clockStart, setClockStart] = React.useState({hours: 0, minutes: 0})
-  const [clockEnd, setClockEnd] = React.useState({hours: 0, minutes: 0})
+  const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 })
+  const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 })
 
   const handleRoomChange = (e: any) => {
     setRoom(e)
   }
 
   const handleDate = (e: any) => {
-    setDate(format(e,"yyyy-MM-dd"))
+    setDate(format(e, "yyyy-MM-dd"))
   }
 
   const handleHourStart = (e: any) => {
-    setClockStart({ ...clockStart, hours: parseInt(e.target.value)})
+    setClockStart({ ...clockStart, hours: parseInt(e.target.value) })
   }
 
   const handleMinStart = (e: any) => {
-    setClockStart({ ...clockStart, minutes: parseInt(e.target.value)})
+    setClockStart({ ...clockStart, minutes: parseInt(e.target.value) })
   }
 
   const handleHourEnd = (e: any) => {
-    setClockEnd({ ...clockEnd, hours: parseInt(e.target.value)})
+    setClockEnd({ ...clockEnd, hours: parseInt(e.target.value) })
   }
 
   const handleMinEnd = (e: any) => {
-    setClockEnd({ ...clockEnd, minutes: parseInt(e.target.value)})
+    setClockEnd({ ...clockEnd, minutes: parseInt(e.target.value) })
   }
 
   const axiosWithToken = axios.create({
@@ -75,23 +75,23 @@ const AddPostComp = () => {
 
   const submit = async () => {
     const response = await axiosWithToken.post(url, body)
-    if(response.data.msg == "input booking berhasil"){
+    if (response.data.msg == "input booking berhasil") {
       navigate("/dashboard")
     }
     console.log(response.data)
   }
 
   return (
-    <div className="flex items-center justify-center my-20">
+    <div className="flex items-center justify-center mt-10 mb-20">
       <div className="w-full">
-        <div className="text-3xl font-bold text-center">Detail Booking</div>
-        <div className="px-96">
+        <div className="text-xl md:text-3xl font-bold text-center">Detail Booking</div>
+        <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
             <div className="text-lg font-bold">Keperluan</div>
-            <Input className="w-full mt-2 focus-visible:ring-transparent" placeholder="Meeting" onChange={(e)=>setEvent(e.target.value)}/>
+            <Input className="w-full mt-2 focus-visible:ring-transparent" placeholder="Meeting" onChange={(e) => setEvent(e.target.value)} />
           </div>
         </div>
-        <div className="flex justify-between mx-96">
+        <div className="md:flex md:justify-between px-5 md:px-0 md:mx-96">
           <div className="">
             <div className="items-start mt-4 text-left">
               <div className="text-lg font-bold">Tanggal</div>
@@ -101,7 +101,7 @@ const AddPostComp = () => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[280px] mt-2 justify-start text-left font-normal",
+                        "w-full md:w-[280px] mt-2 justify-start text-left font-normal",
                         !date && "text-muted-foreground"
                       )}
                     >
@@ -126,7 +126,7 @@ const AddPostComp = () => {
               <div className="text-lg font-bold">Ruangan</div>
               <div>
                 <Select onValueChange={handleRoomChange}>
-                  <SelectTrigger className="w-[280px] mt-2 focus-visible:ring-transparent">
+                  <SelectTrigger className="w-full md:w-[280px] mt-2 focus-visible:ring-transparent">
                     <SelectValue placeholder="Pilih ruangan..." />
                   </SelectTrigger>
                   <SelectContent>
@@ -148,10 +148,10 @@ const AddPostComp = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between mt-4 mx-96">
-          <div className="w-[280px]">
+        <div className="md:flex md:justify-between mt-4 mx-5 md:mx-96">
+          <div className="w-full md:w-[280px]">
             <div className="text-lg font-bold">Jam Mulai</div>
-            <div className="w-[280px] border mt-2 bg-white rounded-lg p-1.5">
+            <div className="w-full md:w-[280px] border mt-2 bg-white rounded-lg p-2">
               <div className="flex justify-center">
                 <select
                   name="hours"
@@ -161,7 +161,7 @@ const AddPostComp = () => {
                 >
                   {Array.from({ length: 24 }, (_, i) => (
                     <option key={i} value={i}>{i.toString().padStart(2, '0')}</option>
-                ))}
+                  ))}
                 </select>
                 <span className="ml-10 text-xl">:</span>
                 <select
@@ -172,14 +172,14 @@ const AddPostComp = () => {
                 >
                   {Array.from({ length: 12 }, (_, i) => (
                     <option key={i * 5} value={i * 5}>{(i * 5).toString().padStart(2, '0')}</option>
-                ))}
+                  ))}
                 </select>
               </div>
             </div>
           </div>
-          <div className="w-[280px]">
+          <div className="w-full md:w-[280px]">
             <div className="text-lg font-bold">Jam Berakhir</div>
-            <div className="w-[280px] border mt-2 bg-white rounded-lg p-1.5">
+            <div className="w-full md:w-[280px] border mt-2 bg-white rounded-lg p-2">
               <div className="flex justify-center">
                 <select
                   name="hours"
@@ -188,8 +188,8 @@ const AddPostComp = () => {
                   onChange={handleHourEnd}
                 >
                   {Array.from({ length: 24 }, (_, i) => (
-                   <option key={i} value={i}>{i.toString().padStart(2, '0')}</option>
-                ))}
+                    <option key={i} value={i}>{i.toString().padStart(2, '0')}</option>
+                  ))}
                 </select>
                 <span className="ml-10 text-xl">:</span>
                 <select
@@ -199,14 +199,14 @@ const AddPostComp = () => {
                   onChange={handleMinEnd}
                 >
                   {Array.from({ length: 12 }, (_, i) => (
-                   <option key={i * 5} value={i * 5}>{(i * 5).toString().padStart(2, '0')}</option>
-                ))}
+                    <option key={i * 5} value={i * 5}>{(i * 5).toString().padStart(2, '0')}</option>
+                  ))}
                 </select>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-2 px-96">
+        <div className="w-full mt-2 px-5 md:px-96">
           <Button className="w-full mt-4" onClick={submit}>Submit</Button>
         </div>
       </div>

@@ -69,23 +69,23 @@ const EditPostComp = () => {
     },
   });
 
-  const fecthData = async() => {
+  const fecthData = async () => {
     const result = await axiosWithToken.get(`${urlGet}/${id}`)
     const booking = result.data.msg
-    const epoch = booking.date 
+    const epoch = booking.date
     const date = new Date(parseInt(epoch))
     setDate(date.toISOString())
     console.log(booking.date)
     console.log(typeof booking.date)
     setRoom(booking.room)
     setEvent(booking.event)
-    setClockStart({ hours: booking.clockStart.hours, minutes: booking.clockStart.minutes})
-    setClockEnd({ hours: booking.clockEnd.hours, minutes: booking.clockEnd.minutes})
+    setClockStart({ hours: booking.clockStart.hours, minutes: booking.clockStart.minutes })
+    setClockEnd({ hours: booking.clockEnd.hours, minutes: booking.clockEnd.minutes })
   }
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     fecthData()
-  },[])
+  }, [])
 
   const body = {
     date: date,
@@ -104,10 +104,10 @@ const EditPostComp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-20">
+    <div className="flex items-center justify-center mt-10 mb-20">
       <div className="w-full">
-        <div className="text-3xl font-bold text-center">Edit Booking</div>
-        <div className="px-96">
+        <div className="text-xl md:text-3xl font-bold text-center">Edit Booking</div>
+        <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
             <div className="text-lg font-bold">Keperluan</div>
             <Input
@@ -118,7 +118,7 @@ const EditPostComp = () => {
             />
           </div>
         </div>
-        <div className="flex justify-between mx-96">
+        <div className="md:flex md:justify-between px-5 md:px-0 md:mx-96">
           <div className="">
             <div className="items-start mt-4 text-left">
               <div className="text-lg font-bold">Tanggal</div>
@@ -128,7 +128,7 @@ const EditPostComp = () => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[280px] mt-2 justify-start text-left font-normal",
+                        "w-full md:w-[280px] mt-2 justify-start text-left font-normal",
                         !date && "text-muted-foreground"
                       )}
                     >
@@ -157,7 +157,7 @@ const EditPostComp = () => {
               <div className="text-lg font-bold">Ruangan</div>
               <div>
                 <Select onValueChange={handleRoomChange} value={room}>
-                  <SelectTrigger className="w-[280px] mt-2 focus-visible:ring-transparent">
+                  <SelectTrigger className="w-full md:w-[280px] mt-2 focus-visible:ring-transparent">
                     <SelectValue placeholder="Pilih ruangan..." />
                   </SelectTrigger>
                   <SelectContent>
@@ -176,10 +176,10 @@ const EditPostComp = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between mt-4 mx-96">
-          <div className="w-[280px]">
+        <div className="md:flex md:justify-between mt-4 mx-5 md:mx-96">
+          <div className="w-full md:w-[280px]">
             <div className="text-lg font-bold">Jam Mulai</div>
-            <div className="w-[280px] border mt-2 bg-white rounded-lg p-2">
+            <div className="w-full md:w-[280px] border mt-2 bg-white rounded-lg p-2">
               <div className="flex justify-center">
                 <select
                   name="hours"
@@ -209,9 +209,9 @@ const EditPostComp = () => {
               </div>
             </div>
           </div>
-          <div className="w-[280px]">
+          <div className="w-full md:w-[280px]">
             <div className="text-lg font-bold">Jam Berakhir</div>
-            <div className="w-[280px] border mt-2 bg-white rounded-lg p-2">
+            <div className="w-full md:w-[280px] border mt-2 bg-white rounded-lg p-2">
               <div className="flex justify-center">
                 <select
                   name="hours"
@@ -242,7 +242,7 @@ const EditPostComp = () => {
             </div>
           </div>
         </div>
-        <div className="mt-2 px-96">
+        <div className="w-full mt-2 px-5 md:px-96">
           <Button className="w-full mt-4" onClick={submit}>
             Submit
           </Button>

@@ -1,12 +1,14 @@
 import MenubarComp from "@/components/MenubarComp"
 import EditPostComp from "../components/EditPostComp"
+import FooterComp from "@/components/FooterComp"
 
 const EditPost = () => {
-  return(
-  <div>
+  return (
+    <div>
       <MenubarComp />
       <EditPostComp />
-  </div>
+      <FooterComp />
+    </div>
   )
 }
 
