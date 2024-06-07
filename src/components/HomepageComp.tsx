@@ -72,8 +72,8 @@ const DashboardComp = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center">
-        <div className="flex space-x-4 p-5">
+      <div className="md:flex md:justify-center items-center">
+        <div className="md:flex space-x-1 md:space-x-4 p-5">
           {['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'].map((hari) => {
             const meetingsForDay = booking
               .filter((book) => getDayFromDate(book.day.toString()) === hari)
@@ -88,7 +88,7 @@ const DashboardComp = () => {
               });
             // benerin lagi urutannya
             return (
-              <div key={hari} className="flex flex-col border p-5 rounded-lg mt-3 w-56 bg-white shadow-[rgba(13,_38,_76,_0.19)_0px_9px_10px]">
+              <div key={hari} className="flex flex-col border p-5 rounded-lg mt-3 w-full md:w-56 bg-white shadow-[rgba(13,_38,_76,_0.19)_0px_9px_10px]">
                 <div className="text-center font-bold text-2xl">{hari}</div>
                 <div className="flex flex-col space-y-3 mt-3">
                   {meetingsForDay.length > 0 ? (
