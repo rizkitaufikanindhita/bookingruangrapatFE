@@ -263,7 +263,7 @@ const EditPostComp = () => {
             <Input
               className="mt-2 focus-visible:ring-transparent"
               placeholder="Jumlah Pengguna"
-              value={pic}
+              value={kapasitas}
               onChange={(e) => setKapasitas(e.target.value)}
             />
           </div>
