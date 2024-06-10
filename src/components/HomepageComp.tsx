@@ -17,7 +17,8 @@ const DashboardComp = () => {
     clockStart: clockType,
     clockEnd: clockType,
     room: String,
-    pic: String
+    pic: String,
+    kapasitas: String
   }
   const [booking, setBooking] = useState<dataType[]>([])
 
@@ -101,6 +102,7 @@ const DashboardComp = () => {
                         <div>{formatTime(book.clockStart)} - {formatTime(book.clockEnd)}</div>
                         <div>{book.room}</div>
                         <div>PIC: {book.pic}</div>
+                        <div>Kapasitas: {book.kapasitas}</div>
                       </div>
                     ))
                   ) : (

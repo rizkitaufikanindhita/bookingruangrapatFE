@@ -36,6 +36,7 @@ const EditPostComp = () => {
   const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 });
   const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 });
   const [pic, setPic] = React.useState("")
+  const [kapasitas, setKapasitas] = React.useState("")
   const id = searchParams.get("id")
 
   const handleRoomChange = (e: any) => {
@@ -94,7 +95,8 @@ const EditPostComp = () => {
     room: room,
     clockStart: clockStart,
     clockEnd: clockEnd,
-    pic: pic
+    pic: pic,
+    kapasitas: kapasitas
   };
 
   const submit = async () => {
@@ -252,6 +254,17 @@ const EditPostComp = () => {
               placeholder="Penanggungjawab"
               value={pic}
               onChange={(e) => setPic(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="px-5 md:px-96">
+          <div className="items-start mt-4 text-left">
+            <div className="text-lg font-bold">kapasitas</div>
+            <Input
+              className="mt-2 focus-visible:ring-transparent"
+              placeholder="Jumlah Pengguna"
+              value={pic}
+              onChange={(e) => setKapasitas(e.target.value)}
             />
           </div>
         </div>
