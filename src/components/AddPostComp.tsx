@@ -146,6 +146,15 @@ const AddPostComp = () => {
                     <SelectItem value="Ruang Kolaborasi Pegawai">
                       Ruang Kolaborasi Pegawai
                     </SelectItem>
+                    <SelectItem value="Ruang Rapat F2">
+                      Ruang Rapat F2
+                    </SelectItem>
+                    <SelectItem value="Ruang Assessment F5">
+                      Ruang Assessment F5
+                    </SelectItem>
+                    <SelectItem value="Ruang Assessment F6">
+                      Ruang Assessment F6
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
