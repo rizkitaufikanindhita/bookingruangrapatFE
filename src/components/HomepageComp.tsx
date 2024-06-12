@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Separator } from "@/components/ui/separator"
+import { useNavigate } from "react-router-dom"
 const url = import.meta.env.VITE_URL_GET
 
 const DashboardComp = () => {
+  const navigate = useNavigate()
   type clockType = {
     hours: number,
     minutes: number
@@ -71,6 +73,10 @@ const DashboardComp = () => {
     };
     return daysMap[day.toLowerCase()]; // Mengembalikan "minggu" jika tidak ada pasangan kunci yang cocok
   };
+
+  if(localStorage.getItem("token")){
+    navigate("/dashboard")
+  }
 
   return (
     <div>
