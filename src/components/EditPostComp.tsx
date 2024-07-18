@@ -305,7 +305,7 @@ const EditPostComp = () => {
             <div className="items-start mt-4 text-left">
               <div className="text-lg font-bold">Jenis Rapat</div>
               <div>
-                <Select onValueChange={handleRapatChange}>
+                <Select onValueChange={handleRapatChange} value={rapat}>
                   <SelectTrigger className="w-full md:w-[280px] mt-2 focus-visible:ring-transparent">
                     <SelectValue placeholder="Pilih Jenis Rapat..." />
                   </SelectTrigger>
@@ -325,6 +325,7 @@ const EditPostComp = () => {
                   className="w-full mt-2 focus-visible:ring-transparent"
                   placeholder="e.g Tambahan Monitor, Kursi"
                   onChange={(e) => setCatatan(e.target.value)}
+                  value={catatan}
                 />
               </div>
             </div>
