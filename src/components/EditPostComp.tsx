@@ -88,6 +88,7 @@ const EditPostComp = () => {
     setRoom(booking.room);
     setEvent(booking.event);
     setPic(booking.pic);
+    setKapasitas(booking.kapasitas);
     setRapat(booking.rapat);
     setCatatan(booking.catatan);
     setClockStart({
@@ -294,8 +295,8 @@ const EditPostComp = () => {
             <Input
               className="mt-2 focus-visible:ring-transparent"
               placeholder="Jumlah Pengguna"
-              value={kapasitas}
               onChange={(e) => setKapasitas(e.target.value)}
+              value={kapasitas}
             />
           </div>
         </div>
