@@ -291,7 +291,7 @@ const EditPostComp = () => {
         </div>
         <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
-            <div className="text-lg font-bold">kapasitas</div>
+            <div className="text-lg font-bold">Kapasitas</div>
             <Input
               className="mt-2 focus-visible:ring-transparent"
               placeholder="Jumlah Pengguna"

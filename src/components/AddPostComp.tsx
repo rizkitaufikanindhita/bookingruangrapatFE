@@ -89,6 +89,29 @@ const AddPostComp = () => {
     if (response.data.msg == "input booking berhasil") {
       navigate("/dashboard");
     }
+    fetch("https://sheetdb.io/api/v1/oa27fpuy86u1m", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: [
+          {
+            Keperluan: event,
+            Tanggal: date,
+            Ruangan: room,
+            Jam_Mulai: clockStart,
+            Jam_Berakhir: clockEnd,
+            PIC: pic,
+            Kapasitas: kapasitas,
+            Jenis_Rapat: rapat,
+            Catatan_Tambahan: catatan,
+          },
+        ],
+      }),
+    }).then((response) => response.json());
+
     console.log(response.data);
   };
 
@@ -256,7 +279,7 @@ const AddPostComp = () => {
         </div>
         <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
-            <div className="text-lg font-bold">kapasitas</div>
+            <div className="text-lg font-bold">Kapasitas</div>
             <Input
               className="w-full mt-2 focus-visible:ring-transparent"
               placeholder="Jumlah Pengguna"
