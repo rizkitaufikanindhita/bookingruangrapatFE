@@ -203,7 +203,7 @@ const DashboardComp = () => {
                         <div>PIC: {book.pic}</div>
                         <div>kapasitas: {book.kapasitas}</div>
                         <div>{book.rapat}</div>
-                        <div>{book.catatan}</div>
+                        <div>catatan: {book.catatan}</div>
                       </div>
                     ))
                   ) : (
