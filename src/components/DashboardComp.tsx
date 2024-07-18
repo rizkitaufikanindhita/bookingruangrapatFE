@@ -201,9 +201,9 @@ const DashboardComp = () => {
                         </div>
                         <div>{book.room}</div>
                         <div>PIC: {book.pic}</div>
-                        <div>kapasitas: {book.kapasitas}</div>
-                        <div>{book.rapat}</div>
-                        <div>catatan: {book.catatan}</div>
+                        <div>Kapasitas: {book.kapasitas}</div>
+                        <div>Rapat {book.rapat}</div>
+                        <div>Catatan: {book.catatan}</div>
                       </div>
                     ))
                   ) : (
