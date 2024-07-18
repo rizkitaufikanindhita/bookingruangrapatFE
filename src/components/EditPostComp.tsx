@@ -2,8 +2,8 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-const urlUpdate = import.meta.env.VITE_URL_UPDATE
-const urlGet = import.meta.env.VITE_URL_GET
+const urlUpdate = import.meta.env.VITE_URL_UPDATE;
+const urlGet = import.meta.env.VITE_URL_GET;
 
 import { useNavigate } from "react-router-dom";
 
@@ -29,18 +29,25 @@ import {
 
 const EditPostComp = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
   const [date, setDate] = React.useState<string>("");
   const [event, setEvent] = React.useState("");
   const [room, setRoom] = React.useState("");
   const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 });
   const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 });
-  const [pic, setPic] = React.useState("")
-  const [kapasitas, setKapasitas] = React.useState("")
-  const id = searchParams.get("id")
+  const [pic, setPic] = React.useState("");
+  const [kapasitas, setKapasitas] = React.useState("");
+  const [rapat, setRapat] = React.useState("");
+  const [catatan, setCatatan] = React.useState("");
+
+  const id = searchParams.get("id");
 
   const handleRoomChange = (e: any) => {
     setRoom(e);
+  };
+
+  const handleRapatChange = (e: any) => {
+    setRapat(e);
   };
 
   const handleDate = (e: any) => {
@@ -71,23 +78,31 @@ const EditPostComp = () => {
   });
 
   const fecthData = async () => {
-    const result = await axiosWithToken.get(`${urlGet}/${id}`)
-    const booking = result.data.msg
-    const epoch = booking.date
-    const date = new Date(parseInt(epoch))
-    setDate(date.toISOString())
-    console.log(booking.date)
-    console.log(typeof booking.date)
-    setRoom(booking.room)
-    setEvent(booking.event)
-    setPic(booking.pic)
-    setClockStart({ hours: booking.clockStart.hours, minutes: booking.clockStart.minutes })
-    setClockEnd({ hours: booking.clockEnd.hours, minutes: booking.clockEnd.minutes })
-  }
+    const result = await axiosWithToken.get(`${urlGet}/${id}`);
+    const booking = result.data.msg;
+    const epoch = booking.date;
+    const date = new Date(parseInt(epoch));
+    setDate(date.toISOString());
+    console.log(booking.date);
+    console.log(typeof booking.date);
+    setRoom(booking.room);
+    setEvent(booking.event);
+    setPic(booking.pic);
+    setRapat(booking.rapat);
+    setCatatan(booking.catatan);
+    setClockStart({
+      hours: booking.clockStart.hours,
+      minutes: booking.clockStart.minutes,
+    });
+    setClockEnd({
+      hours: booking.clockEnd.hours,
+      minutes: booking.clockEnd.minutes,
+    });
+  };
 
   React.useEffect(() => {
-    fecthData()
-  }, [])
+    fecthData();
+  }, []);
 
   const body = {
     date: date,
@@ -96,7 +111,9 @@ const EditPostComp = () => {
     clockStart: clockStart,
     clockEnd: clockEnd,
     pic: pic,
-    kapasitas: kapasitas
+    kapasitas: kapasitas,
+    rapat: rapat,
+    catatan: catatan,
   };
 
   const submit = async () => {
@@ -110,7 +127,9 @@ const EditPostComp = () => {
   return (
     <div className="flex items-center justify-center mt-10 mb-20">
       <div className="w-full">
-        <div className="text-xl md:text-3xl font-bold text-center">Edit Booking</div>
+        <div className="text-xl md:text-3xl font-bold text-center">
+          Edit Booking
+        </div>
         <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
             <div className="text-lg font-bold">Keperluan</div>
@@ -133,7 +152,7 @@ const EditPostComp = () => {
                       variant={"outline"}
                       className={cn(
                         "w-full md:w-[280px] mt-2 justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
+                        !date && "text-muted-foreground",
                       )}
                     >
                       <CalendarIcon className="w-4 h-4 mr-2" />
@@ -278,6 +297,37 @@ const EditPostComp = () => {
               value={kapasitas}
               onChange={(e) => setKapasitas(e.target.value)}
             />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-between px-5 md:px-0 md:mx-96">
+          <div className="">
+            <div className="items-start mt-4 text-left">
+              <div className="text-lg font-bold">Jenis Rapat</div>
+              <div>
+                <Select onValueChange={handleRapatChange}>
+                  <SelectTrigger className="w-full md:w-[280px] mt-2 focus-visible:ring-transparent">
+                    <SelectValue placeholder="Pilih Jenis Rapat..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Offline">Offline</SelectItem>
+                    <SelectItem value="Hybrid">Hybrid</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div className="items-start mt-4 text-left">
+              <div className="text-lg font-bold">Catatan Tambahan</div>
+              <div className="w-full md:w-[280px]">
+                <Input
+                  className="w-full mt-2 focus-visible:ring-transparent"
+                  placeholder="e.g Tambahan Monitor, Kursi"
+                  onChange={(e) => setCatatan(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import axios from "axios"
-const url = import.meta.env.VITE_URL_POST
+import axios from "axios";
+const url = import.meta.env.VITE_URL_POST;
 
 import { useNavigate } from "react-router-dom";
 
@@ -26,46 +26,51 @@ import {
 } from "@/components/ui/select";
 
 const AddPostComp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [date, setDate] = React.useState<string>("");
-  const [event, setEvent] = React.useState("")
-  const [room, setRoom] = React.useState("")
-  const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 })
-  const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 })
-  const [pic, setPic] = React.useState("")
-  const [kapasitas, setKapasitas] = React.useState("")
+  const [event, setEvent] = React.useState("");
+  const [room, setRoom] = React.useState("");
+  const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 });
+  const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 });
+  const [pic, setPic] = React.useState("");
+  const [kapasitas, setKapasitas] = React.useState("");
+  const [rapat, setRapat] = React.useState("");
+  const [catatan, setCatatan] = React.useState("");
 
   const handleRoomChange = (e: any) => {
-    setRoom(e)
-  }
+    setRoom(e);
+  };
+
+  const handleRapatChange = (e: any) => {
+    setRapat(e);
+  };
 
   const handleDate = (e: any) => {
-    setDate(format(e, "yyyy-MM-dd"))
-  }
+    setDate(format(e, "yyyy-MM-dd"));
+  };
 
   const handleHourStart = (e: any) => {
-    setClockStart({ ...clockStart, hours: parseInt(e.target.value) })
-  }
+    setClockStart({ ...clockStart, hours: parseInt(e.target.value) });
+  };
 
   const handleMinStart = (e: any) => {
-    setClockStart({ ...clockStart, minutes: parseInt(e.target.value) })
-  }
+    setClockStart({ ...clockStart, minutes: parseInt(e.target.value) });
+  };
 
   const handleHourEnd = (e: any) => {
-    setClockEnd({ ...clockEnd, hours: parseInt(e.target.value) })
-  }
+    setClockEnd({ ...clockEnd, hours: parseInt(e.target.value) });
+  };
 
   const handleMinEnd = (e: any) => {
-    setClockEnd({ ...clockEnd, minutes: parseInt(e.target.value) })
-  }
+    setClockEnd({ ...clockEnd, minutes: parseInt(e.target.value) });
+  };
 
   const axiosWithToken = axios.create({
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),
-      "Content-Type": "application/json"
-    }
-  })
-
+      "Content-Type": "application/json",
+    },
+  });
 
   const body = {
     date: date,
@@ -74,25 +79,33 @@ const AddPostComp = () => {
     clockStart: clockStart,
     clockEnd: clockEnd,
     pic: pic,
-    kapasitas: kapasitas
-  }
+    kapasitas: kapasitas,
+    rapat: rapat,
+    catatan: catatan,
+  };
 
   const submit = async () => {
-    const response = await axiosWithToken.post(url, body)
+    const response = await axiosWithToken.post(url, body);
     if (response.data.msg == "input booking berhasil") {
-      navigate("/dashboard")
+      navigate("/dashboard");
     }
-    console.log(response.data)
-  }
+    console.log(response.data);
+  };
 
   return (
     <div className="flex items-center justify-center mt-10 mb-20">
       <div className="w-full">
-        <div className="text-xl md:text-3xl font-bold text-center">Detail Booking</div>
+        <div className="text-xl md:text-3xl font-bold text-center">
+          Detail Booking
+        </div>
         <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
             <div className="text-lg font-bold">Keperluan</div>
-            <Input className="w-full mt-2 focus-visible:ring-transparent" placeholder="Meeting" onChange={(e) => setEvent(e.target.value)} />
+            <Input
+              className="w-full mt-2 focus-visible:ring-transparent"
+              placeholder="Meeting"
+              onChange={(e) => setEvent(e.target.value)}
+            />
           </div>
         </div>
         <div className="md:flex md:justify-between px-5 md:px-0 md:mx-96">
@@ -106,11 +119,15 @@ const AddPostComp = () => {
                       variant={"outline"}
                       className={cn(
                         "w-full md:w-[280px] mt-2 justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
+                        !date && "text-muted-foreground",
                       )}
                     >
                       <CalendarIcon className="w-4 h-4 mr-2" />
-                      {date ? format(parseISO(date), "PPP") : <span>Pick a date</span>}
+                      {date ? (
+                        format(parseISO(date), "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0">
@@ -134,7 +151,7 @@ const AddPostComp = () => {
                     <SelectValue placeholder="Pilih ruangan..." />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Ruang Rapat F3" >
+                    <SelectItem value="Ruang Rapat F3">
                       Ruang Rapat F3
                     </SelectItem>
                     <SelectItem value="Ruang Rapat F6">
@@ -173,7 +190,9 @@ const AddPostComp = () => {
                   onChange={handleHourStart}
                 >
                   {Array.from({ length: 24 }, (_, i) => (
-                    <option key={i} value={i}>{i.toString().padStart(2, '0')}</option>
+                    <option key={i} value={i}>
+                      {i.toString().padStart(2, "0")}
+                    </option>
                   ))}
                 </select>
                 <span className="ml-10 text-xl">:</span>
@@ -184,7 +203,9 @@ const AddPostComp = () => {
                   onChange={handleMinStart}
                 >
                   {Array.from({ length: 12 }, (_, i) => (
-                    <option key={i * 5} value={i * 5}>{(i * 5).toString().padStart(2, '0')}</option>
+                    <option key={i * 5} value={i * 5}>
+                      {(i * 5).toString().padStart(2, "0")}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -201,7 +222,9 @@ const AddPostComp = () => {
                   onChange={handleHourEnd}
                 >
                   {Array.from({ length: 24 }, (_, i) => (
-                    <option key={i} value={i}>{i.toString().padStart(2, '0')}</option>
+                    <option key={i} value={i}>
+                      {i.toString().padStart(2, "0")}
+                    </option>
                   ))}
                 </select>
                 <span className="ml-10 text-xl">:</span>
@@ -212,7 +235,9 @@ const AddPostComp = () => {
                   onChange={handleMinEnd}
                 >
                   {Array.from({ length: 12 }, (_, i) => (
-                    <option key={i * 5} value={i * 5}>{(i * 5).toString().padStart(2, '0')}</option>
+                    <option key={i * 5} value={i * 5}>
+                      {(i * 5).toString().padStart(2, "0")}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -222,18 +247,59 @@ const AddPostComp = () => {
         <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
             <div className="text-lg font-bold">Penanggungjawab Ruang/PIC</div>
-            <Input className="w-full mt-2 focus-visible:ring-transparent" placeholder="Penanggungjawab" onChange={(e) => setPic(e.target.value)} />
+            <Input
+              className="w-full mt-2 focus-visible:ring-transparent"
+              placeholder="Penanggungjawab"
+              onChange={(e) => setPic(e.target.value)}
+            />
           </div>
         </div>
         <div className="px-5 md:px-96">
           <div className="items-start mt-4 text-left">
             <div className="text-lg font-bold">kapasitas</div>
-            <Input className="w-full mt-2 focus-visible:ring-transparent" placeholder="Jumlah Pengguna" onChange={(e) => setKapasitas(e.target.value)} />
+            <Input
+              className="w-full mt-2 focus-visible:ring-transparent"
+              placeholder="Jumlah Pengguna"
+              onChange={(e) => setKapasitas(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-between px-5 md:px-0 md:mx-96">
+          <div className="">
+            <div className="items-start mt-4 text-left">
+              <div className="text-lg font-bold">Jenis Rapat</div>
+              <div>
+                <Select onValueChange={handleRapatChange}>
+                  <SelectTrigger className="w-full md:w-[280px] mt-2 focus-visible:ring-transparent">
+                    <SelectValue placeholder="Pilih Jenis Rapat..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Offline">Offline</SelectItem>
+                    <SelectItem value="Hybrid">Hybrid</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div className="items-start mt-4 text-left">
+              <div className="text-lg font-bold">Catatan Tambahan</div>
+              <div className="w-full md:w-[280px]">
+                <Input
+                  className="w-full mt-2 focus-visible:ring-transparent"
+                  placeholder="e.g Tambahan Monitor, Kursi"
+                  onChange={(e) => setCatatan(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="w-full mt-2 px-5 md:px-96">
-          <Button className="w-full mt-4" onClick={submit}>Submit</Button>
+          <Button className="w-full mt-4" onClick={submit}>
+            Submit
+          </Button>
         </div>
       </div>
     </div>
