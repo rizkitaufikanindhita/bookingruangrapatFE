@@ -84,16 +84,13 @@ const AddPostComp = () => {
     catatan: catatan,
   };
 
-  const [idSheet, setIdSheet] = React.useState(1);
-
   const submit = async () => {
     const response = await axiosWithToken.post(url, body);
     if (response.data.msg == "input booking berhasil") {
       navigate("/dashboard");
     }
-    setIdSheet(idSheet + 1);
+
     await axios.post("https://sheetdb.io/api/v1/oa27fpuy86u1m", {
-      idSheet: idSheet,
       Keperluan: event,
       Tanggal: format(parseISO(date), "dd-MM-yyyy"),
       Ruangan: room,
@@ -104,6 +101,7 @@ const AddPostComp = () => {
       Jenis_Rapat: rapat,
       Catatan_Tambahan: catatan,
     });
+
     console.log(response.data);
   };
 
