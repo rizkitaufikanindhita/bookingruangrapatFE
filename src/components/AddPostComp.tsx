@@ -84,34 +84,26 @@ const AddPostComp = () => {
     catatan: catatan,
   };
 
+  const [idSheet, setIdSheet] = React.useState(1);
+
   const submit = async () => {
     const response = await axiosWithToken.post(url, body);
     if (response.data.msg == "input booking berhasil") {
       navigate("/dashboard");
     }
-    fetch("https://sheetdb.io/api/v1/oa27fpuy86u1m", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: [
-          {
-            Keperluan: event,
-            Tanggal: date,
-            Ruangan: room,
-            Jam_Mulai: clockStart,
-            Jam_Berakhir: clockEnd,
-            PIC: pic,
-            Kapasitas: kapasitas,
-            Jenis_Rapat: rapat,
-            Catatan_Tambahan: catatan,
-          },
-        ],
-      }),
-    }).then((response) => response.json());
-
+    setIdSheet(idSheet + 1);
+    await axios.post("https://sheetdb.io/api/v1/oa27fpuy86u1m", {
+      idSheet: idSheet,
+      Keperluan: event,
+      Tanggal: format(parseISO(date), "dd-MM-yyyy"),
+      Ruangan: room,
+      Jam_Mulai: clockStart.hours + ":" + clockStart.minutes,
+      Jam_Berakhir: clockEnd.hours + ":" + clockEnd.minutes,
+      PIC: pic,
+      Kapasitas: kapasitas,
+      Jenis_Rapat: rapat,
+      Catatan_Tambahan: catatan,
+    });
     console.log(response.data);
   };
 

@@ -122,6 +122,7 @@ const EditPostComp = () => {
     if (response.data.msg == "booking berhasil diupdate") {
       navigate("/dashboard");
     }
+
     console.log(response.data);
   };
 
