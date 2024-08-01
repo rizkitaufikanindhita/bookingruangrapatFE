@@ -85,6 +85,11 @@ const AddPostComp = () => {
   };
 
   const submit = async () => {
+    if (!date || !event || !room || !rapat) {
+      alert(
+        "Cek lagi tanggal, keperluan, ruangan, jam mulai, jam berakhir, jenis rapat. Tidak boleh kosong",
+      );
+    }
     const response = await axiosWithToken.post(url, body);
     if (response.data.msg == "input booking berhasil") {
       navigate("/dashboard");
