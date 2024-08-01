@@ -32,10 +32,10 @@ const AddPostComp = () => {
   const [room, setRoom] = React.useState("");
   const [clockStart, setClockStart] = React.useState({ hours: 0, minutes: 0 });
   const [clockEnd, setClockEnd] = React.useState({ hours: 0, minutes: 0 });
-  const [pic, setPic] = React.useState("");
-  const [kapasitas, setKapasitas] = React.useState("");
+  const [pic, setPic] = React.useState("-");
+  const [kapasitas, setKapasitas] = React.useState("-");
   const [rapat, setRapat] = React.useState("");
-  const [catatan, setCatatan] = React.useState("");
+  const [catatan, setCatatan] = React.useState("-");
 
   const handleRoomChange = (e: any) => {
     setRoom(e);
