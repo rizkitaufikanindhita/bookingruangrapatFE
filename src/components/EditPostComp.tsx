@@ -207,6 +207,9 @@ const EditPostComp = () => {
                     <SelectItem value="Ruang Assessment F6">
                       Ruang Assessment F6
                     </SelectItem>
+                    <SelectItem value="Ruang Serbaguna A5">
+                      Ruang Serbaguna A5
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
