@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
+# Booking Room App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based application to manage and book meeting rooms. Built using React, Vite, and Tailwind CSS, this application provides an intuitive interface for users to book rooms, view availability, and manage bookings efficiently.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend:
 
-## Expanding the ESLint configuration
+-   **React**: A JavaScript library for building user interfaces.
+-   **Vite**: A next-generation, fast build tool and development server.
+-   **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+-   **Axios**: A promise-based HTTP client for making requests to the server.
+-   **Date-fns & Moment.js**: Libraries for handling date and time functionalities.
+-   **Radix UI**: A set of low-level UI components for building accessible and customizable interfaces.
+-   **Headless UI**: A set of completely unstyled, fully accessible UI components.
+-   **React Router DOM**: A library for routing and navigation in React apps.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Development Tools:
 
-- Configure the top-level `parserOptions` property like this:
+-   **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
+-   **ESLint**: A tool for identifying and fixing problems in your JavaScript code.
+-   **PostCSS & Autoprefixer**: Tools for adding vendor prefixes and optimizing CSS.
+-   **Vite Plugin PWA**: Plugin to make the app a Progressive Web App (PWA).
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Features
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+-   **Room Booking**: Users can view available rooms and book them based on their preferred time slot.
+-   **Room Management**: Admins can manage rooms, set availability, and approve bookings.
+-   **Calendar Integration**: Seamless integration with a calendar to show room availability.
+-   **Responsive Design**: Fully responsive UI for optimal use on desktop and mobile devices.
