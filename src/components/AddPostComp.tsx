@@ -175,7 +175,7 @@ const AddPostComp = () => {
                     <SelectItem value="Ruang Rapat F6">
                       Ruang Rapat F6
                     </SelectItem>
-                    <SelectItem value="Ruang Rapat F6">
+                    <SelectItem value="Ruang Rapat F5">
                       Ruang Rapat F5
                     </SelectItem>
                     <SelectItem value="Ruang Kolaborasi Hakim">
